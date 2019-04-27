@@ -1,0 +1,36 @@
+{
+  "name": "solid-email-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-mailjet": "^3.3.1",
+    "nodemailer": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.8",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon",
+    "test": "jest",
+    "test:dev": "jest --watch",
+    "testWithCoverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stemmlerjs/solid-email-microservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stemmlerjs/solid-email-microservice/issues"
+  },
+  "homepage": "https://github.com/stemmlerjs/solid-email-microservice#readme"
+}
