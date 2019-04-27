@@ -1,12 +1,12 @@
-import { IMailService, IMailTransmissionResult } from "../models/MailService";
-import { Mail } from "../models/Mail";
-import sgMail from '@sendgrid/mail'
+
+import { IMailService, IMailTransmissionResult } from "../../models/MailService";
+import { Mail } from "../../models/Mail";
 
 export class SendGridEmailService implements IMailService {
   private sendgrid: any;
 
-  constructor (apiKey: string) {
-    this.sendgrid = sgMail;
+  constructor (apiKey: string, sgInstance: any) {
+    this.sendgrid = sgInstance
     this.sendgrid.setApiKey(apiKey);
   }
 
@@ -20,7 +20,7 @@ export class SendGridEmailService implements IMailService {
     };
     
     try {
-      await sgMail.send(msg);
+      await this.sendgrid.send(msg);
       return { message: 'Success', success: true }
     } catch (err) {
       return { message: err.toString(), success: false }

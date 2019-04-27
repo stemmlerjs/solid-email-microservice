@@ -47,8 +47,14 @@ The way that we're using it right now, it doesn't allow for us to actually test 
 
 It's also said to be closed for modification because we really can't change the interface, and we wouldn't. If we want to add (extend it), we can add new interfaces to the implementation so that we realize other features.
 
-
 TODO: for later:
 - to demonstrate the Single Responsibility principle, if we wanted to apply styles to our emails, where would we locate that? It would violate SRP to add this into the mailservices themselves, so perhaps we'd want to create a new abstraction, and allow us to create HTML emails.
 
->> Note 4: Liskov Substitution Principle through hooking this up to an express server to listen to requests, and also writing a new implementation to show that this will work for any one.
+>> Note 4: New Mail Microservice (SendGrid)
+
+- we just created the second mail microservice, Sendgrid. We want to be able to test that this works as well, so we will need to decouple the sendgrid dependency out of the service so that we can pass in a mock in our tests.
+
+- We just decoupled the actual sendgrid instance out of the class.
+- now, this allows us to actually test it with the jest mocks!
+
+>> Note 5: Liskov Substitution Principle through hooking this up to an express server to listen to requests, and also writing a new implementation to show that this will work for any one.

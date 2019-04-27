@@ -1,15 +1,8 @@
 
-import { IMailService, IMailTransmissionResult } from "../models/MailService";
+import { IMailService, IMailTransmissionResult } from "../../models/MailService";
 import nodemailer from 'nodemailer'
-import { Mail } from "../models/Mail";
-
-export interface ITransporterConfig {
-  host: string;
-  port: number;
-  secure: false;
-  userName: string;
-  password: string;
-}
+import { Mail } from "../../models/Mail";
+import { ITransporterConfig } from "./ITransporterConfig";
 
 export class NodemailerEmailService implements IMailService {
 
