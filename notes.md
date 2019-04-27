@@ -39,3 +39,7 @@ Another thing to note here is that we've just pretty much ripped code straight f
 
 The way that we're using it right now, it doesn't allow for us to actually test this thing properly... so, we can revisit it later and refactor it so that we can use Dependency Injection to inject a transport, whether that be a test transport, or an actual transport.
 
+
+TODO: for later:
+- to demonstrate the Single Responsibility principle, if we wanted to apply styles to our emails, where would we locate that? It would violate SRP to add this into the mailservices themselves, so perhaps we'd want to create a new abstraction, and allow us to create HTML emails.
+
