@@ -24,3 +24,18 @@ We also added a Guard and Result class which are two patterns which can help us 
 So now that we have the mail model, we can start modeling the email sending service.
 
 Let's do that now with the first service... Nodemailer.
+
+>> Note 2: Let's add the mail microservice (nodemailer)
+
+We've just added the first mail microservice, Nodemailer.
+
+Example of the Open-Closed principle can be seen in how we created the interface specifying how exactly implementations of MailServices should be created. 
+
+Specifically, they just need to have that particular method on it.
+
+Note: this could have been done as an abstract class, using an abstract method. There's not really anything wrong with doing that, but in our case, it makes as bit more sense to just do it this way because there's not actually any shared code that we need to have between future implementatinos... at least, we don't know that yet. So... YAGNI. 
+
+Another thing to note here is that we've just pretty much ripped code straight from the nodemailer docs https://nodemailer.com/about/ and created a TEST transport object. This is what's used in order to do testing.
+
+The way that we're using it right now, it doesn't allow for us to actually test this thing properly... so, we can revisit it later and refactor it so that we can use Dependency Injection to inject a transport, whether that be a test transport, or an actual transport.
+
