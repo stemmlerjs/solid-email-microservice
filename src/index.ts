@@ -1,12 +1,14 @@
 import { NodemailerEmailService } from "./services/NodemailerEmailService";
 import { Mail } from "./models/Mail";
 import { EmailAddress } from "./models/EmailAddress";
+import { SendGridEmailService } from "./services/SendgridEmailService";
 
 
 async function main () {
   try {
-    const nodeMailerTransporter = await NodemailerEmailService.createTestTransporter();
-    const nodeMailer = new NodemailerEmailService(nodeMailerTransporter);
+    // const nodeMailerTransporter = await NodemailerEmailService.createTestTransporter();
+    // const mailer = new NodemailerEmailService(nodeMailerTransporter);
+    const mailer = new SendGridEmailService('sdfdjhfkjsdhfksdhkfjshdkjf')
     console.log("Started");
 
     const sourceAddressOrError = EmailAddress.create('khalilstemmler@gmail.com');
@@ -23,7 +25,7 @@ async function main () {
 
     const mail = mailOrError.getValue();
 
-    const result = await nodeMailer.sendMail(mail);
+    const result = await mailer.sendMail(mail);
     console.log(result);
 
   } catch (err) {
