@@ -5,8 +5,8 @@ import { EmailAddress } from "./models/EmailAddress";
 
 async function main () {
   try {
-    const nodeMailer = new NodemailerEmailService();
-    await nodeMailer.init();
+    const nodeMailerTransporter = await NodemailerEmailService.createTestTransporter();
+    const nodeMailer = new NodemailerEmailService(nodeMailerTransporter);
     console.log("Started");
 
     const sourceAddressOrError = EmailAddress.create('khalilstemmler@gmail.com');

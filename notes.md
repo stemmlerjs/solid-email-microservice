@@ -39,7 +39,16 @@ Another thing to note here is that we've just pretty much ripped code straight f
 
 The way that we're using it right now, it doesn't allow for us to actually test this thing properly... so, we can revisit it later and refactor it so that we can use Dependency Injection to inject a transport, whether that be a test transport, or an actual transport.
 
+>> Note 3: So what have we done so far?
+
+**Single-Responsibility-Principle**: Mail service interface specifies that it can do only one thing; send mail. And that's all it does.
+
+**Open-Closed principle**: Mail service is an interface that specifies what it can do. By using an abstraction (interface or abstract method), we've enabled ourselves to be able to provide different implementations of it. We've closed the interface for modification, but it's fully open for extension. We could add all kinds of other features to any particular mail implementation. If we wanted to add something like being able to notify when mail has failed and sending a slack message or something, we can achieve that through composition. 
+
+It's also said to be closed for modification because we really can't change the interface, and we wouldn't. If we want to add (extend it), we can add new interfaces to the implementation so that we realize other features.
+
 
 TODO: for later:
 - to demonstrate the Single Responsibility principle, if we wanted to apply styles to our emails, where would we locate that? It would violate SRP to add this into the mailservices themselves, so perhaps we'd want to create a new abstraction, and allow us to create HTML emails.
 
+>> Note 4: Liskov Substitution Principle through hooking this up to an express server to listen to requests, and also writing a new implementation to show that this will work for any one.

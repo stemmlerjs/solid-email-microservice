@@ -3,22 +3,43 @@ import { IMailService, IMailTransmissionResult } from "../models/MailService";
 import nodemailer from 'nodemailer'
 import { Mail } from "../models/Mail";
 
+export interface ITransporterConfig {
+  host: string;
+  port: number;
+  secure: false;
+  userName: string;
+  password: string;
+}
+
 export class NodemailerEmailService implements IMailService {
 
   private transporter: nodemailer.Transporter;
 
-  constructor () {
-    // todo: later, let's put the transporter in here to demonstrate
-    // dependency injection
+  constructor (transporter: nodemailer.Transporter) {
+    this.transporter = transporter;
   }
 
-  async init () : Promise<any> {
+  // Factory method
+  public static async createTransporter (transporterConfig: ITransporterConfig) : Promise<nodemailer.Transporter> {
+    return nodemailer.createTransport({
+      host: transporterConfig.host,
+      port: transporterConfig.port,
+      secure: transporterConfig.secure, // upgrade later with STARTTLS
+      auth: {
+        user: transporterConfig.userName,
+        pass: transporterConfig.password
+      }
+    });
+  }
+
+  // Factory method
+  public static async createTestTransporter (): Promise<nodemailer.Transporter> {
     // Generate test SMTP service account from ethereal.email
     // Only needed if you don't have a real mail account for testing
     let testAccount = await nodemailer.createTestAccount();
 
     // create reusable transporter object using the default SMTP transport
-    this.transporter = nodemailer.createTransport({
+    return nodemailer.createTransport({
       host: "smtp.ethereal.email",
       port: 587,
       secure: false, // true for 465, false for other ports
