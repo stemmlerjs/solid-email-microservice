@@ -26,6 +26,7 @@ export class MailGunEmailService implements IMailService {
       })
       
     } catch (err) {
+      console.log(err)
       return { message: err.toString(), success: false }
     }
   }
