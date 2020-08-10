@@ -1,4 +1,4 @@
-import { NodemailerEmailService } from "./services/NodemailerEmailService";
+import { NodemailerEmailService } from "./services/nodemailer/NodemailerEmailService";
 import { Mail } from "./models/Mail";
 import { EmailAddress } from "./models/EmailAddress";
 import { SendGridEmailService } from "./services/sendgrid/SendGridEmailService";
